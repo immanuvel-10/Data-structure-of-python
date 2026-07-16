@@ -1,86 +1,98 @@
-class Song:
-    def __init__(self, data):
-        self.data = data
+class Node:
+    def __init__(self,music):
+        self.music = music
         self.next = None
 
-
-class Playlist:
+class PlayList:
     def __init__(self):
         self.head = None
 
-    def is_empty(self):
+    def is_empty (self):
         return self.head is None
 
-    def append(self, data):
-        new_song = Song(data)
-
+    def append(self, music):
+        new_node = Node(music)
         if self.head is None:
-            self.head = new_song
+            self.head = new_node
             return
-
         current = self.head
         while current.next:
             current = current.next
+        current.next = new_node
 
-        current.next = new_song
+    def prepend(self,music):
+        new_node = Node(music)
+        new_node.next = self.head
+        self.head = new_node
 
-    def prepend(self, data):
-        new_song = Song(data)
-        new_song.next = self.head
-        self.head = new_song
+    def in_between(self,music,pos):
+        new_node = Node(music)
+        current = self.head
+        while current:
+            if (current.music == pos):
+                new_node.next = current.next
+                current.next = new_node
+            current = current.next
+        return
 
-    def delete(self, data):
+    def delete(self,music):
         if self.head is None:
             return
-
-        if self.head.data == data:
+        if self.head.music == music:
             self.head = self.head.next
             return
-
         current = self.head
         while current.next:
-            if current.next.data == data:
+            if current.next.music == music:
                 current.next = current.next.next
                 return
             current = current.next
 
-    def insert(self, data, prev):
-        new_song = Song(data)
+    def search(self,music):
         current = self.head
-
         while current:
-            if current.data == prev:
-                new_song.next = current.next
-                current.next = new_song
-                return
+            if current.music == music:
+                return True
             current = current.next
-
-    def search(self, data):
-        current = self.head
-
-        while current:
-            if current.data == data:
-                print("Song available")
-                return
-            current = current.next
-
-        print("Song not available")
+        return False
 
     def display(self):
         current = self.head
-
         while current:
-            print(current.data)
+            print(current.music , end = "\n")
             current = current.next
 
-        print("\n-END OF PLAYLIST-\n")
+if __name__ == '__main__':
+
+    playlist = PlayList()
+
+    pos = input("Enter the song after which the new song should be added")
+    music = input("Enter the song name to add")
+
+    Music = input("Enter the music to be searched")
+
+    song = input("Enter song to delete") 
+
+    print("==== PLAYLIST ===")
+    playlist.append("Sunflower")
+    playlist.append("Fairytale")
+    playlist.append("Starboy")
+    playlist.append("Animals")
+
+    playlist.prepend("Beleiver")
+    playlist.prepend("Dangerous")
+
+    playlist.in_between(music,pos)
+
+    playlist.delete(song)
+
+    a = playlist.search(Music)
+    if a == True:
+        print("Song Present")
+    else:
+        print("Song Not Found")
+
+    playlist.display()
 
 
-song_name = Playlist()
 
-song_name.append("Oru thai")
-song_name.append("We three kings")
-song_name.append("Jingle bells")
-
-print("--U1 PLAYLIST: (DISPLAY)--")
-song_name.display()
