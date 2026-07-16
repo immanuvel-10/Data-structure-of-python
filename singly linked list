@@ -74,13 +74,13 @@ if __name__ == '__main__':
     song = input("Enter song to delete") 
 
     print("==== PLAYLIST ===")
-    playlist.append("Sunflower")
-    playlist.append("Fairytale")
-    playlist.append("Starboy")
-    playlist.append("Animals")
+    playlist.append("We three kings")
+    playlist.append("Little boy")
+    playlist.append("Maghilovam")
+    playlist.append("Hand of god")
 
-    playlist.prepend("Beleiver")
-    playlist.prepend("Dangerous")
+    playlist.prepend("Ummai pola")
+    playlist.prepend("Appa naan")
 
     playlist.in_between(music,pos)
 
