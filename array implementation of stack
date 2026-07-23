@@ -1,30 +1,30 @@
 class Stack:
-    def __init__(this):
-        this.stack = []
+    def __init__(self):
+        self.stack = []
 
-    def is_empty(this):
-        return len(this.stack) == 0
+    def is_empty(self):
+        return len(self.stack) == 0
 
-    def push(this,value):
-        this.stack.append(value)
+    def push(self,value):
+        self.stack.append(value)
         print(f"{value} has been added successfully inside the stack")
 
-    def pop(this):
-        if this.is_empty():
+    def pop(self):
+        if self.is_empty():
             return "Stack Under Flow"
-        return this.stack.pop()
+        return self.stack.pop()
 
-    def peek(this):
-        if this.is_empty():
+    def peek(self):
+        if self.is_empty():
             return "Stack is Empty"
-        return this.stack[-1]
+        return self.stack[-1]
 
     
-    def size (this):
-        return len(this.stack)
+    def size (self):
+        return len(self.stack)
 
-    def display(this):
-        print("Stack elements : ",this.stack)
+    def display(self):
+        print("Stack elements : ",self.stack)
 
 
 s = Stack()
